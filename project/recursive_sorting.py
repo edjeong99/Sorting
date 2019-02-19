@@ -1,11 +1,11 @@
-### helper function
-def merge( arrA, arrB ):
-    elements = len( arrA ) + len( arrB )
+# helper function
+def merge(arrA, arrB):
+    elements = len(arrA) + len(arrB)
     merged_arr = [0] * elements
     a = 0
     b = 0
     # since arrA and arrB already sorted, we only need to compare the first element of each when merging!
-    for i in range( 0, elements ):
+    for i in range(0, elements):
         if a >= len(arrA):    # all elements in arrA have been merged
             merged_arr[i] = arrB[b]
             b += 1
@@ -21,12 +21,12 @@ def merge( arrA, arrB ):
     return merged_arr
 
 
-### recursive sorting function
-def merge_sort( arr ):
-    if len( arr ) > 1:
-        left = merge_sort( arr[ 0 : len( arr ) / 2 ] )
-        right = merge_sort( arr[ len( arr ) / 2 : ] )
-        arr = merge( left, right )   # merge() defined later
+# recursive sorting function
+def merge_sort(arr):
+    if len(arr) > 1:
+        left = merge_sort(arr[0: len(arr) / 2])
+        right = merge_sort(arr[len(arr) / 2:])
+        arr = merge(left, right)   # merge() defined later
     return arr
 
 
@@ -36,20 +36,49 @@ def merge_in_place(arr, start, mid, end):
 
     return arr
 
-def merge_sort_in_place(arr, l, r): 
+
+def merge_sort_in_place(arr, l, r):
     # TO-DO
 
     return arr
 
 
 # TO-DO: implement the Quick Sort function below USING RECURSION
-def quick_sort( arr, low, high ):
 
+
+def quick_sort(arr, low, high):
+    if low < high:
+
+        # pi is partitioning index, arr[p] is now
+        # at right place
+        pi = partition(arr, low, high)
+
+        # Separately sort elements before
+        # partition and after partition
+        quick_sort(arr, low, pi-1)
+        quick_sort(arr, pi+1, high)
     return arr
 
 
+def partition(arr, low, high):
+    pivot = arr[high]
+    i = low
+
+    for j in range(low, high):
+        if arr[j] <= pivot:
+            arr[i], arr[j] = arr[j], arr[i]
+            i += 1
+    arr[i], arr[high] = arr[high], arr[i]
+    return (i)
+
+
+arr1 = [1, 5, 8, 4, 2, 9, 6, 0, 3, 7]
+print(quick_sort(arr1, 0, len(arr1)-1))
+
 # STRETCH: implement the Timsort function below
 # hint: check out https://github.com/python/cpython/blob/master/Objects/listsort.txt
-def timsort( arr ):
+
+
+def timsort(arr):
 
     return arr
