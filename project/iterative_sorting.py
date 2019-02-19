@@ -24,7 +24,13 @@ def selection_sort(arr):
 
 # TO-DO: implement the Insertion Sort function below
 def insertion_sort(arr):
-
+    for i in range(1, len(arr)):
+        current_ele = arr[i]
+        j = i
+        while j > 0 and arr[j - 1] > current_ele:
+            arr[j] = arr[j-1]
+            j = j-1
+        arr[j] = current_ele
     return arr
 
 
